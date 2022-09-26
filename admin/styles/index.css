@@ -5,7 +5,9 @@
 
 :root{
     --colorPrimary :#1893ff;
+    --blackPrimary:#0972ce;
     --colorSecundary:#1d1d1d;
+    --red:#ff3535;
     --colorthree:#f6f6f6;
     /*Fuentes*/
     /*font-family: 'Roboto', sans-serif;*/
@@ -18,6 +20,7 @@ body{
 /**BOTONES*/
 
 /*TODO: BOTON AÑADIR */
+
 .btn-a{
     background: var(--colorPrimary);
     color: var(--colorthree);
@@ -36,10 +39,44 @@ body{
     color:var(--colorSecundary);
     text-decoration: none;
 }
-/*POSICION BOTON*/
+/*POSICION BOTON AÑADIR*/
 .btn-a-p{
     margin: 60px 0 20px 0;
 }
+
+
+/*TODO: BOTON REGISTRAR */
+.btn-r{
+   background: var(--colorPrimary);
+    color: var(--colorthree);
+    padding: 10px 25px;
+    border:none;
+    border-radius: 3px;
+    margin:30px 0 0 0 ;
+}
+.btn-r:hover{
+    background-color:var(--blackPrimary);
+}
+
+/*TODO: BOTON ATRAS */
+.btn-at{
+    background: var(--colorSecundary);
+    color: var(--colorthree);
+    padding: 10px 15px;
+    border:none;
+    border-radius: 3px;
+}
+.link-at{
+    color:var(--colorthree);
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+    font-size: 20px;
+}
+.link-at:hover{
+    color: var(--colorPrimary);
+    text-decoration: none;
+}
+
 
 /**Listado - CARTA*/
 

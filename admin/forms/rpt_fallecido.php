@@ -105,6 +105,7 @@ $result = $mysqli->query($sql);;
     </div> <!-- WRAPPER -->
 
     <!-- BOOSTSTRAP JS -->
+    <script src="../script/main.js"></script>
     <script src="../styles/js/bootstrap.bundle.min.js"></script>
 </body>
 

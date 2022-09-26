@@ -6,7 +6,7 @@ CREATE TABLE `fallecido`(
     `ap2` varchar(110) NOT NULL,
     `fchnc` date NOT NULL COMMENT 'fecha nacimiento',
     `age` int(11) NOT NULL ,
-    `ci` int(11) NOT NULL ,
+    `ci` varchar(110) NOT NULL ,
     `estdcivil` varchar (110) COMMENT 'estado civil',
     `drccion` varchar(110) NOT NULL,
     `lgrnc` int(11)  NOT NULL COMMENT 'lugar de nacimiento',
