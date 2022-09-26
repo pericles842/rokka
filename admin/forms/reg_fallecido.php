@@ -49,7 +49,7 @@ $result = $mysqli->query($sql);;
                 <!-- card body -->
                 <div class="card-body">
                     <form enctype="multipart/form-data" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
-                        <h4 class="mb-5">Datos Personales</h4>
+                        <h4 class="mb-5">Datos Personales </h4>
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group">
@@ -107,6 +107,7 @@ $result = $mysqli->query($sql);;
                                 <div class="form-group">
                                     <label for="nrodoc">Lugar de Nacimiento</label>
                                     <select name="estado" require class="form-control custom-select">
+                                        <option value="" selected>Estado</option>
                                         <?php
                                         $sqlestado = ("SELECT * FROM estado ");
                                         $resestado = $mysqli->query($sqlestado);
@@ -114,7 +115,6 @@ $result = $mysqli->query($sql);;
                                             $id = $row['idestado'];
                                             $estado = $row['estado'];
                                         ?>
-                                            <option value="" selected>Estado</option>
                                             <option value="<?php echo $id; ?>"><?php echo $estado; ?></option>
                                         <?php
                                         }
@@ -125,7 +125,8 @@ $result = $mysqli->query($sql);;
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label style="visibility:hidden ;">.</label>
-                                    <select  name="municipio" require class="form-control custom-select">
+                                    <select name="municipio" require class="form-control custom-select">
+                                        <option value="" selected>Municipio</option>
                                         <?php
                                         $sqlmun = ("SELECT * FROM municipios ");
                                         $resmun = $mysqli->query($sqlmun);
@@ -133,7 +134,6 @@ $result = $mysqli->query($sql);;
                                             $id = $row['idmunicipio'];
                                             $mun = $row['municipio'];
                                         ?>
-                                            <option value="" selected>Municipio</option>
                                             <option value="<?php echo $id; ?>"><?php echo $mun; ?></option>
                                         <?php
                                         }
@@ -141,7 +141,38 @@ $result = $mysqli->query($sql);;
                                     </select>
                                 </div>
                             </div>
+                            <!-- 3ra -->
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label> Estado Civil</label>
+                                    <select name="cvil" require class="form-control custom-select">
+
+                                        <?php
+                                        $sqlcvil = ("SELECT * FROM estadocivil ");
+                                        $rescvil = $mysqli->query($sqlcvil);
+                                        while ($row = mysqli_fetch_array($rescvil)) {
+                                            $id = $row['idestcivil'];
+                                            $cvil = $row['estcivil'];
+                                        ?>
+                                            <option value="<?php echo $id; ?>"><?php echo $cvil; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="edad">Direccion</label>
+                                    <input type="text" name="drccion"  class="form-control " >
+                                </div>
+                            </div>
+                            <!-- 4ta -->
                         </div> <!-- ROW -->
+                        <h4  class="pt-5 pb-t">Datos de Fallecimiento</h4>
+                        <div class="row">
+                            
+                        </div>
 
                         <!-- //*REGISTRO -->
                         <div align="right" class="col-md-12">
