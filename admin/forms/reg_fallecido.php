@@ -1,7 +1,41 @@
 <?php
 require('../conexion.php');
-$sql = ("SELECT * FROM fallecido ");
-$result = $mysqli->query($sql);;
+if (isset($_POST['submit'])) {
+
+    $nm1 = $_POST['nm1'];
+    $nm2 = $_POST['nm2'];
+    $ap1 = $_POST['ap1'];
+    $ap2 = $_POST['ap2'];
+
+    $ci = $_POST['tpdoc'] . $_POST['nrodoc'];
+    $fhcito = $_POST['fhcito'];
+    $edad = $_POST['edad'];
+    $lgnc = $_POST['parroquian'] ."/". $_POST['municipion']; //*Lugar de nacimiento
+    $cvil = $_POST['cvil'];
+    $drccion = $_POST['drccion'];
+
+    $hjos = $_POST['hjos'];
+    $numhjos = $_POST['numhjos'];
+
+    $fhllinto = $_POST['fhllinto'];
+    $lgfll = $_POST['parroquiam'] ."/". $_POST['municipiom']; //*Lugar de fallecimiento
+    $fhdefuncion = $_POST['fhdefuncion'];
+    $actdef = $_POST['actdef'];
+
+    $tmuerte = $_POST['tmuerte'];
+    $cmuerte1 = $_POST['cmuerte1'];
+    $protesis = $_POST['protesis'];
+    $obs = $_POST['obs'];
+
+
+    $sql = "INSERT INTO fallecido (name1,name2,ap1,ap2,fchnc,age,ci,estdcivil,drccion,lgrnc,lgrfll,fchdfun,numfun,
+    hijos,numhijos,tpmuerte,csomuerte,protesis,observaciones) values ('" . ucfirst($nm1) . "','" . ucfirst($nm2) . "','" . ucfirst($ap1) . "','" . ucfirst($ap2) . "','" . $fhcito . "',
+    '" . $edad . "','" . $ci . "','" . $cvil . "','" . $drccion . "','" . $lgnc . "','" . $lgfll . "','" . $fhdefuncion . "','" . $actdef . "','" . $hjos . "','" . $numhjos . "',
+    '" . $tmuerte . "','" . $cmuerte1 . "','" . $protesis . "','" . $obs . "' ) ";
+    $conexion = $mysqli->query($sql);
+    //echo $sql; exit();
+    echo '<script language="javascript">alert(" Registro Exitoso !!!");window.location.href="rpt_fallecido.php"; </script>';
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -10,7 +44,7 @@ $result = $mysqli->query($sql);;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rokka</title>
+    <title>Roka</title>
     <!--  Bootstrap  CSS -->
     <link rel="stylesheet" href="../styles/css/bootstrap.min.css">
     <!-- ESTILOS CSS  -->
@@ -29,12 +63,12 @@ $result = $mysqli->query($sql);;
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h1>Registro para Fallecidos</h1>
+                        <h1>Registro del Fallecido</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Registro para Fallecidos</li>
+                            <li class="breadcrumb-item active" aria-current="page">Registro del Fallecido</li>
                         </ol>
                     </div>
                 </div>
@@ -44,7 +78,7 @@ $result = $mysqli->query($sql);;
         <section class="contend">
             <div class="card card-primary">
                 <div class="card-header">
-                    <h3 class="card-title ht">Registro para Fallecidos</h3>
+                    <h3 class="card-title ht">Registro del Fallecido</h3>
                 </div>
                 <!-- card body -->
                 <div class="card-body">
@@ -93,29 +127,29 @@ $result = $mysqli->query($sql);;
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="fhcito">Fec.Nacimiento</label>
+                                    <label for="fhcito">Fec. Nacimiento</label>
                                     <input type="date" name="fhcito" id="fechaNacimiento" class="form-control  ">
                                 </div>
                             </div>
                             <div class="col-md-1">
                                 <div class="form-group">
-                                    <label for="edad">Edad:</label>
+                                    <label for="edad">Edad</label>
                                     <input type="text" name="edad" id="edad" class="form-control  " readonly>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label for="nrodoc">Lugar de Nacimiento</label>
-                                    <select name="estado" require class="form-control custom-select">
-                                        <option value="" selected>Estado</option>
+                                    <label for="">Lugar de Nacimiento</label>
+                                    <select name="parroquian" require class="form-control custom-select">
+                                        <option value="" selected>Parroquia</option>
                                         <?php
-                                        $sqlestado = ("SELECT * FROM estado ");
-                                        $resestado = $mysqli->query($sqlestado);
-                                        while ($row = mysqli_fetch_array($resestado)) {
-                                            $id = $row['idestado'];
-                                            $estado = $row['estado'];
+                                        $sqlrroquia= ("SELECT * FROM parroquias ");
+                                        $resrroquia = $mysqli->query($sqlrroquia);
+                                        while ($row = mysqli_fetch_array($resrroquia)) {
+                                            $id = $row['idparroquia'];
+                                            $rroquia = $row['parroquia'];
                                         ?>
-                                            <option value="<?php echo $id; ?>"><?php echo $estado; ?></option>
+                                            <option value="<?php echo $id; ?>"><?php echo $rroquia; ?></option>
                                         <?php
                                         }
                                         ?>
@@ -125,7 +159,7 @@ $result = $mysqli->query($sql);;
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label style="visibility:hidden ;">.</label>
-                                    <select name="municipio" require class="form-control custom-select">
+                                    <select name="municipion" require class="form-control custom-select">
                                         <option value="" selected>Municipio</option>
                                         <?php
                                         $sqlmun = ("SELECT * FROM municipios ");
@@ -164,19 +198,140 @@ $result = $mysqli->query($sql);;
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="edad">Direccion</label>
-                                    <input type="text" name="drccion"  class="form-control " >
+                                    <input type="text" name="drccion" class="form-control ">
                                 </div>
                             </div>
-                            <!-- 4ta -->
-                        </div> <!-- ROW -->
-                        <h4  class="pt-5 pb-t">Datos de Fallecimiento</h4>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="">Hijos</label>
+                                    <select class="form-control custom-select"  name="hjos" onchange="numHijos(this.value)">
+                                        <option value="no">no</option>
+                                        <option value="si">si</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group" style="display: none;" id="hj">
+                                    <label for="edad">Numero de Hijos</label>
+                                    <input type="number" name="numhjos" class="form-control ">
+                                </div>
+                            </div>
+                        </div> <!-- ROW1 -->
+
+                        <h4 class="pt-5 pb-5">Datos del Fallecimiento</h4>
+
                         <div class="row">
-                            
-                        </div>
+                            <!-- 4ta -->
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="fhllinto">Fec.Fallecimiento</label>
+                                    <input type="date" name="fhllinto" id="fechaNacimiento" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="">Lugar de Fallecimiento</label>
+                                    <select name="parroquiam" require class="form-control custom-select">
+                                        <option value="" selected>Parroquia</option>
+                                        <?php
+                                        $sqlrroquia= ("SELECT * FROM parroquias ");
+                                        $resrroquia = $mysqli->query($sqlrroquia);
+                                        while ($row = mysqli_fetch_array($resrroquia)) {
+                                            $id = $row['idparroquia'];
+                                            $rroquia = $row['parroquia'];
+                                        ?>
+                                            <option value="<?php echo $id; ?>"><?php echo $rroquia; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label style="visibility:hidden ;">.</label>
+                                    <select name="municipiom" require class="form-control custom-select">
+                                        <option value="" selected>Municipio</option>
+                                        <?php
+                                        $sqlmun = ("SELECT * FROM municipios ");
+                                        $resmun = $mysqli->query($sqlmun);
+                                        while ($row = mysqli_fetch_array($resmun)) {
+                                            $id = $row['idmunicipio'];
+                                            $mun = $row['municipio'];
+                                        ?>
+                                            <option value="<?php echo $id; ?>"><?php echo $mun; ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="fhdefuncion">Fec.Defunción</label>
+                                    <input type="date" name="fhdefuncion" id="fechaNacimiento" class="form-control">
+                                </div>
+                            </div>
+                            <!-- 5ta -->
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Acta de Defunciòn</label>
+                                    <input type="number" name="actdef" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Tipo de Muerte</label>
+                                    <select class="form-control custom-select" name="tmuerte" onchange="tipoMuerte(this.value);">
+                                        <option value="Natural"> Natural</option>
+                                        <option value="Enfermedad">Enfermedad</option>
+                                        <option value="Provocada">Provocada</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Causa de Muerte</label>
+                                    <select  style="display:block;" class="form-control custom-select"  name="cmuerte1" id="cmuerte1">
+                                        <option value="Vejez">vejez</option>
+                                    </select>
+
+                                    <select  style="display:none;" class="form-control custom-select" name="cmuerte2" id="cmuerte2">
+                                        <option value="Cardiovascular">Cardiovascular</option>
+                                        <option value="Enfermedad pulmonal">Enfermedad Pulmonal</option>
+                                        <option value="Otro">otro</option>
+                                    </select>
+
+                                    <select  style="display:none;" class="form-control custom-select" name="cmuerte3" id="cmuerte3">
+                                        <option value="Accidente">Accidente</option>
+                                        <option value="Trafico">Trafico</option>
+                                        <option value="Otro">otro</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Protesis</label>
+                                    <select class="form-control custom-select" name="protesis" onchange="protesiss(this.value);">
+                                        <option value="no">no</option>
+                                        <option value="si">si</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- 6ta -->
+                            <div class="col-md-6">
+                                <div class="form-group" id="obs" style="display:none;">
+                                    <label >Observaciones</label>
+                                    <textarea class="form-control" name="obs" cols="10" rows="5">
+                                    
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div> <!-- ROW2 -->
 
                         <!-- //*REGISTRO -->
                         <div align="right" class="col-md-12">
-                            <input class="btn-r" type="submit" value="Registrar">
+                            <input class="btn-r" type="submit" name="submit" value="Registrar">
                         </div>
                     </form>
                     <!-- /.card-body -->
